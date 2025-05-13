@@ -1,0 +1,64 @@
+.App-header {
+  background-color: #fcf9f9;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 2rem;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #222;
+  text-transform: uppercase;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  flex-direction: row;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: #295F98;
+}
+
+.record-button {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #295F98;
+  background: transparent;
+  color: #295F98;
+  border-radius: 2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.record-button:hover {
+  background-color: #295F98;
+  color: white;
+}

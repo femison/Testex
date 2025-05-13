@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import servicesData from '../data/servicesData.json';
+import doctorsData from '../data/doctors.json';
 import { FaArrowRight, FaCalendarAlt, FaClinicMedical, FaPhone, FaMapMarkerAlt, FaTimes } from 'react-icons/fa';
 import '../style/Services.css';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 
 const Modal = ({ onClose, children }) => (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>
-          <FaTimes />
-        </button>
-        {children}
-      </div>
+  <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <button className="modal-close" onClick={onClose}>
+        <FaTimes />
+        
+      </button>
+      {children}
     </div>
-  );
+  </div>
+);
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState(1);
   const currentCategory = servicesData.categories.find(c => c.id === activeCategory);
-  const filteredServices = currentCategory?.services || [];
+  const filteredServices = currentCategory?.services
+  ? [...new Set(currentCategory.services)]
+  : [];
 
   return (
     <div className="services-page">
@@ -29,7 +32,7 @@ const Services = () => {
           <p className="services-subtitle">Услуги премиум-класса для вашего здоровья</p>
         </div>
       </div>
-      
+
       <div className="services-layout">
         <div className="categories-sidebar-container">
           <div className="categories-sidebar">
@@ -37,7 +40,6 @@ const Services = () => {
               <FaClinicMedical className="sidebar-icon" />
               <h3>Категории услуг</h3>
             </div>
-
             <div className="categories-list">
               {servicesData.categories.map(category => (
                 <div key={category.id} className="category-group">
@@ -65,7 +67,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="services-content-container">
           <div className="services-content">
             <div className="content-header">
@@ -73,14 +75,14 @@ const Services = () => {
                 {currentCategory?.name}
               </h2>
             </div>
-            
+
             <div className="services-list-container">
               {filteredServices.length > 0 ? (
                 <ul className="services-items">
                   {filteredServices.map((service, index) => (
-                    <ServiceCard 
-                      key={index} 
-                      service={service} 
+                    <ServiceCard
+                      key={`${service}-${index}`}  
+                      service={service}
                       isPromo={service.includes('₽')}
                     />
                   ))}
@@ -100,52 +102,126 @@ const Services = () => {
 
 const ServiceCard = ({ service, isPromo }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showDoctors, setShowDoctors] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     date: ''
   });
+  const [showModal, setShowModal] = useState(false);
+  const [doctorFormData, setDoctorFormData] = useState({
+    doctorId: null,
+    name: '',
+    phone: '',
+    date: ''
+  });
 
-  const handleSubmit = (e) => {
+  const getSpecialtyFromService = (serviceName) => {
+  const name = serviceName.toLowerCase();
+  if (name.includes("гинеколог")) return "Гинеколог";
+  if (name.includes("репродуктолог")) return "Репродуктолог";
+  if (name.includes("терапевт")) return "Терапевт";
+  if (name.includes("check-up для женщин")) return "Check-Up для женщин";
+  if (name.includes("check-up для мужчин")) return "Check-Up для мужчин";
+  if (name.includes("комплексное обследование")) return "Комплексное обследование";
+  if (name.includes("флороценоз")) return "Флороценоз от 1 300 ₽";
+  return null;
+};
+
+  const specialty = getSpecialtyFromService(service);
+  const availableDoctors = doctorsData.doctors.filter(doc => doc.specialty === specialty);
+
+  const handleDoctorSubmit = (e) => {
     e.preventDefault();
-    console.log('Форма отправлена:', { service, ...formData });
+    console.log('Форма записи для врача отправлена:', { doctorFormData });
     setShowModal(false);
-    setFormData({ name: '', phone: '', date: '' });
+    setDoctorFormData({ doctorId: null, name: '', phone: '', date: '' });
+  };
+
+  const handleItemClick = () => {
+    // Если врачи доступны, переключаем их видимость
+    if (availableDoctors.length > 0) {
+      setShowDoctors(!showDoctors);
+    } else {
+      // Если врачей нет, открываем модальное окно
+      setShowModal(true);
+    }
   };
 
   return (
     <>
-      <li 
+      <li
         className={`service-item ${isPromo ? 'promo' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleItemClick}  // Кликаем по всему элементу
       >
-        <div className="service-info">
-          <span className="service-name">{service}</span>
-          {isPromo && <span className="service-price-badge">Акция</span>}
+        <div className="service-card-layout">
+          <div className="service-info">
+            <span className="service-name">{service}</span>
+            {isPromo && <span className="service-price-badge">Акция</span>}
+          </div>
+
+          <div className="service-actions">
+            {availableDoctors.length > 0 && (
+              <div className="show-doctors-panel">
+                {/* Стрелка вниз, если врачи скрыты, и стрелка вверх, если врачи показаны */}
+                {showDoctors ? (
+                  <FaArrowUp className="arrow-icon" />
+                ) : (
+                  <FaArrowDown className="arrow-icon" />
+                )}
+              </div>
+            )}
+          </div>
         </div>
-        <button 
-          className={`service-btn ${isHovered ? 'hovered' : ''}`}
-          onClick={() => setShowModal(true)}
-        >
-          <FaCalendarAlt className="btn-icon" />
-          <span>Записаться</span>
-        </button>
+
+        {/* Список врачей под карточкой */}
+        {showDoctors && availableDoctors.length > 0 && (
+          <div className={`doctors-wrapper ${showDoctors ? 'show' : ''}`}>
+              <div className="doctors-list-container">
+                <ul className="doctors-list">
+                  {availableDoctors.map((doc) => (
+                    <li key={doc.id} className="doctor-item">
+                      <span>{doc.name}</span>
+                      <button
+                        className="service-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();  // Предотвращаем закрытие модалки при клике на кнопку
+                          setDoctorFormData({ ...doctorFormData, doctorId: doc.id });
+                          setShowModal(true);
+                        }}
+                      >
+                        <FaCalendarAlt className="btn-icon" />
+                        Записаться
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+          </div>
+        )}
       </li>
 
+      
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <h3>Запись на услугу</h3>
+          <h3>Запись на прием</h3>
           <p className="modal-service-name">{service}</p>
-          <form onSubmit={handleSubmit}>
+          
+          {availableDoctors.find(doc => doc.id === doctorFormData.doctorId)?.name && (
+            <p className="modal-doctor-name">
+              Доктор: {availableDoctors.find(doc => doc.id === doctorFormData.doctorId).name}
+            </p>
+          )}
+          <form onSubmit={handleDoctorSubmit}>
             <div className="form-group">
               <label>Имя:</label>
               <input
                 type="text"
                 required
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                value={doctorFormData.name}
+                onChange={(e) => setDoctorFormData({ ...doctorFormData, name: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -153,8 +229,8 @@ const ServiceCard = ({ service, isPromo }) => {
               <input
                 type="tel"
                 required
-                value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                value={doctorFormData.phone}
+                onChange={(e) => setDoctorFormData({ ...doctorFormData, phone: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -162,8 +238,8 @@ const ServiceCard = ({ service, isPromo }) => {
               <input
                 type="date"
                 required
-                value={formData.date}
-                onChange={(e) => setFormData({...formData, date: e.target.value})}
+                value={doctorFormData.date}
+                onChange={(e) => setDoctorFormData({ ...doctorFormData, date: e.target.value })}
               />
             </div>
             <button type="submit" className="submit-btn">
@@ -174,6 +250,15 @@ const ServiceCard = ({ service, isPromo }) => {
       )}
     </>
   );
+
+
+
+  
 };
+
+
+
+
+
 
 export default Services;

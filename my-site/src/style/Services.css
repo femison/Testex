@@ -10,6 +10,7 @@
     --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     --sidebar-width: 320px;
+  
   }
   
   /* Основные стили */
@@ -18,6 +19,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+   
   }
   
   .services-page {
@@ -26,6 +28,7 @@
     flex-direction: column;
     background-color: var(--bg-light);
     color: var(--text-dark);
+    
   }
   
   .services-header {
@@ -196,37 +199,46 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+  
   }
   
-  .service-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid #f1f5f9;
-    transition: all 0.2s;
-  }
+.service-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
   
   .service-item:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
   }
   
-  .service-info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
+.service-info {
+  flex-grow: 1;
+}
   
+.service-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
   .service-name {
     font-size: 1.05rem;
     color: var(--text-dark);
     font-weight: 500;
   }
+
+.doctors-list {
+  list-style-type: none;
+  padding: 0;
+}
   
   .service-price-badge {
     background: #fef2f2;
@@ -237,19 +249,15 @@
     font-weight: 500;
   }
   
-  .service-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    background: #129990;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-weight: 500;
-  }
+.service-btn {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
   
   .service-btn:hover {
     background: #096B68;
@@ -409,17 +417,27 @@
     color: var(--accent-color);
   }
   
-  .modal-service-name {
-    color: var(--primary-color);
-    font-weight: 600;
-    margin: 1rem 0 2rem;
-    font-size: 1.1rem;
-  }
+ .modal-service-name {
+  font-size: 18px;
+  font-weight: bold;
+}
   
   .form-group {
     margin-bottom: 1.5rem;
   }
   
+
+.doctors-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.doctors-wrapper.show {
+  max-height: 500px; 
+}
+
+
   .form-group label {
     display: block;
     margin-bottom: 0.75rem;
@@ -510,3 +528,51 @@
     padding: 4px;
     cursor: pointer;
   }
+
+
+.service-actions{
+  cursor: pointer;
+}
+
+
+.doctor-card {
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doctors-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.doctor-item {
+  display: flex;
+  padding: 5px 0;
+  font-size: 16px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10%;
+
+}
+
+.doctor-name {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+
+.service-card-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
