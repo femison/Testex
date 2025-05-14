@@ -38,8 +38,8 @@ function App() {
         <Route path="/Specials" element={<Specials />} />
       </Routes>
 
-      <footer className="App-footer">
-        <p>© 2025 Мой Сайт | <Link to="/CheckUp">Чекапы</Link> | <Link to="/Doctors">Врачи</Link></p>
+      <footer className="main-footer">
+        <p>© {new Date().getFullYear()} Клиника Фомина. Все права защищены.</p>
       </footer>
     </Router>
   );

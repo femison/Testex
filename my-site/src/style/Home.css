@@ -1,165 +1,266 @@
-/* Основные стили */
-html, body, #root {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Общие стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container-intro {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 85%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+
+*{
+  scrollbar-width: thin;
+}
+
+
+.header {
+  background-color: #ffffff;
+  padding: 20px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e88e5;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav__link {
+  font-size: 16px;
+  color: #555;
+}
+
+.nav__link:hover,
+.nav__link.active {
+  color: #1e88e5;
+  font-weight: bold;
+}
+
+/* Intro */
+.intro {
+  background: linear-gradient(to right, #e3f2fd, #bbdefb);
   
-  .home-page {
-    font-family: 'Arial', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: #333;
-  }
+  padding: 100px 20px;
+  height: 100vh;
+}
+
+.intro__title {
+  display: flex;
+  font-size: 40px;
+  color: black;
+  margin-bottom: 20px;
+  font-weight: lighter;
+  line-height: 20px;
+}
+
+.intro__inner{
   
-  /* Шапка */
-  .main-header {
-    padding: 20px 0;
-    border-bottom: 1px solid #eaeaea;
-    flex-shrink: 0;
-  }
-  
-  .logo-container {
-    text-align: center;
-  }
-  
-  .logo {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0;
-  }
-  
-  .logo span {
-    color: #2a6496;
-  }
-  
-  .slogan {
-    font-size: 1rem;
-    color: #666;
-    margin-top: 5px;
-  }
-  
-  /* Основное меню */
-  .main-nav {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-  }
-  
-  .patient-categories {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .patient-btn {
-    padding: 8px 20px;
-    background: #f0f0f0;
-    border: none;
-    border-radius: 20px;
+  max-width: 60vh;
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.header-bt{
+    appearance: none;
+    background-color: transparent;
+    border: 0.125em solid #1A1A1A;
+    border-radius: 1.6rem;
+    box-sizing: border-box;
+    color: #3B3B3B;
     cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .patient-btn:hover {
-    background: #2a6496;
-    color: white;
-  }
-  
-  /* Основной контент - теперь растягивается */
-  .main-content {
-    flex: 1;
-    display: flex;
-  }
-  
-  .content-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .info-section {
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 3.75em;
+    min-width: 0;
+    outline: none;
+    padding: 0px 2.5vh;
     text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .info-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-  
-  .features {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  
-  .feature {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .feature-icon {
-    color: #2a6496;
-    font-size: 1.5rem;
-  }
-  
-  .quick-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .quick-link {
-    color: #2a6496;
     text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #2a6496;
-    border-radius: 5px;
-    transition: all 0.3s;
-  }
-  
-  .quick-link:hover {
-    background: #2a6496;
-    color: white;
-  }
-  
-  /* Подвал */
-  .main-footer {
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid #eaeaea;
-    margin-top: auto;
-    flex-shrink: 0;
-  }
-  
-  /* Адаптивность */
-  @media (max-width: 768px) {
-    .logo {
-      font-size: 2rem;
-    }
-    
-    .patient-categories {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .features {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .content-wrapper {
-      padding: 10px;
-    }
-  }
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+}
+
+
+.header-bt:disabled {
+ pointer-events: none;
+}
+
+.header-bt:hover{
+   color: #fff;
+ background-color: #1A1A1A;
+ 
+ transform: translateY(-2px);
+}
+
+.header-bt{
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.bt-start{
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+}
+
+
+
+.intro-text{
+  max-width: 85% ;
+  font-size: 4.75vh;
+  font-weight: normal;
+}
+
+
+.intro__subtitle {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #1e88e5;
+  color: white;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1565c0;
+}
+
+.btn--big {
+  font-size: 18px;
+  padding: 14px 30px;
+}
+
+/* Section */
+.section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section__title {
+  font-size: 32px;
+  color: #0d47a1;
+  margin-bottom: 10px;
+}
+
+.section__text {
+  font-size: 18px;
+  color: #555;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #f5f5f5;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card__image {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.card__title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1e88e5;
+}
+
+.card__text {
+  font-size: 16px;
+  color: #666;
+}
+
+/* CTA */
+.cta {
+  background-color: #e3f2fd;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta__title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #0d47a1;
+}
+
+/* Footer */
+.footer {
+  background-color: #0d47a1;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
