@@ -1,1 +1,3 @@
-for start project use "npm start"
+for start project use
+cd .\my-site\
+"npm start"
