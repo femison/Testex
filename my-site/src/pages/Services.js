@@ -75,6 +75,7 @@ const Services = () => {
                 {currentCategory?.name}
               </h2>
             </div>
+            
 
             <div className="services-list-container">
               {filteredServices.length > 0 ? (
@@ -207,21 +208,19 @@ const ServiceCard = ({ service, isPromo }) => {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <h3>Запись на прием</h3>
-          <p className="modal-service-name">{service}</p>
-          
-          {availableDoctors.find(doc => doc.id === doctorFormData.doctorId)?.name && (
-            <p className="modal-doctor-name">
-              Доктор: {availableDoctors.find(doc => doc.id === doctorFormData.doctorId).name}
-            </p>
-          )}
-          <form onSubmit={handleDoctorSubmit}>
+          <p className="modal-service-name">Услуга: {formData.service}</p>
+          <p className="modal-description">
+            Пожалуйста, заполните форму ниже, чтобы записаться на прием. После отправки формы наш администратор свяжется с вами для подтверждения записи.
+          </p>
+          <form >
             <div className="form-group">
               <label>Имя:</label>
               <input
                 type="text"
                 required
-                value={doctorFormData.name}
-                onChange={(e) => setDoctorFormData({ ...doctorFormData, name: e.target.value })}
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="Введите имя"
               />
             </div>
             <div className="form-group">
@@ -229,8 +228,9 @@ const ServiceCard = ({ service, isPromo }) => {
               <input
                 type="tel"
                 required
-                value={doctorFormData.phone}
-                onChange={(e) => setDoctorFormData({ ...doctorFormData, phone: e.target.value })}
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                placeholder="+7 (999) 123-45-67"
               />
             </div>
             <div className="form-group">
@@ -238,8 +238,9 @@ const ServiceCard = ({ service, isPromo }) => {
               <input
                 type="date"
                 required
-                value={doctorFormData.date}
-                onChange={(e) => setDoctorFormData({ ...doctorFormData, date: e.target.value })}
+                value={formData.date}
+                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                min={new Date().toISOString().split("T")[0]}
               />
             </div>
             <button type="submit" className="submit-btn">

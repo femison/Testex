@@ -1,0 +1,243 @@
+.photo-gallery-container {
+  
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f5f6;
+  min-height: calc(20vh - 60px); /* Учитываем футер */
+  display: flex;
+  flex-direction: column; /* Переключаем на колонку, чтобы вместить больше контента */
+  gap: 5vh;
+  flex-direction: row;
+  margin-top:12%
+}
+
+.gallery-description {
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.gallery-description h1 {
+  font-size: 2.5rem;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+.gallery-description p {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.clinic-details {
+  margin-top: 20px;
+}
+
+.clinic-details h2 {
+  font-size: 1.8rem;
+  color: #0d47a1;
+  margin: 20px 0 10px;
+}
+
+.clinic-details ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.clinic-details ul li {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+}
+
+.gallery-slider {
+  position: relative;
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.gallery-slider .slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 0 0 10px 10px;
+}
+
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.slider-prev {
+  left: 10px;
+}
+
+.slider-next {
+  right: 10px;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.indicator.active {
+  background: #1e88e5;
+}
+
+.reviews-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.reviews-section h2 {
+  font-size: 2rem;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+.review {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.review p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.review span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.contact-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+.contact-section p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .photo-gallery-container {
+    flex-direction: column;
+    gap: 3vh;
+  }
+
+  .gallery-description h1,
+  .reviews-section h2,
+  .contact-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .gallery-description p,
+  .clinic-details ul li,
+  .review p,
+  .contact-section p {
+    font-size: 0.9rem;
+  }
+
+  .gallery-slider {
+    height: 300px;
+  }
+
+  .caption {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
+  .slider-prev,
+  .slider-next {
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+}

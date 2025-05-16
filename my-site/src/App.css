@@ -13,8 +13,6 @@
   }
 }
 
-
-
 .App-link {
   color: #61dafb;
 }
@@ -28,14 +26,118 @@
   }
 }
 
+/* Основной контейнер контента */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.main-content {
+  padding-bottom: 60px; /* Отступ снизу, чтобы футер не перекрывал контент */
+  min-height: calc(100vh - 60px); /* Учитываем высоту хедера */
+}
 
-.App-footer{
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    flex-shrink: 0; 
+/* Стили футера */
+.app-footer {
+  background-color: #F9F5F6;
+  color: #000000;
+  padding: 8px 20px;
+  text-align: center;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto; /* Четыре колонки для социальных иконок, меню, контактов и копирайта */
+  grid-gap: 0px; /* Общий отступ между ячейками сетки */
+  width: 100%;
+  align-items: center;
+}
+
+.footer-socials {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px; /* Отступ между иконками внутри блока */
+  padding: 0;
+  margin: 0;
+  grid-column: 1; /* Социальные иконки занимают первую колонку */
+}
+
+.footer-social-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-social-item a {
+  color: #000000;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social-item a:hover {
+  color: #1e88e5;
+  transform: scale(1.2);
+}
+
+.footer-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Отступ между элементами меню внутри блока */
+  padding: 0;
+  margin: 0;
+  color: #000000;
+  grid-column: 2; /* Меню занимает вторую колонку */
+}
+
+.footer-menu-element {
+  font-size: 14px;
+  color: #000000;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-menu-element:hover {
+  color: #1e88e5;
+}
+
+.footer-contacts {
+  display: flex;
+  gap: 15px; /* Отступ между элементами контактов внутри блока */
+  color: #000000;
+  font-size: 14px;
+  grid-column: 3; /* Контакты занимают третью колонку */
+}
+
+.footer-contacts span {
+  margin: 0 1vh;
+}
+
+.footer-copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px; /* Отступ между строками копирайта */
+  grid-column: 4; /* Копирайт занимает четвёртую колонку */
+  text-align: right;
+}
+
+.footer-subtext {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin: 0;
 }
 
 nav a {
@@ -49,27 +151,54 @@ button {
   padding: 10px;
 }
 
-.clinic-logo{
+.clinic-logo {
   display: flex;
   align-items: center;
 }
 
 .clinic-logo svg {
-  font-size: 3.2vh;  
-  padding-right: 10px ;
-  
+  font-size: 3.2vh;
+  padding-right: 10px;
 }
 
 .header-text {
-  font-family: 'Arial', sans-serif; /* Шрифт для текста */
-  font-weight: bold; /* Жирный текст */
-  font-size: 13px; /* Размер шрифта */
-  color: #2c3e50; /* Цвет текста (темно-серый) */
-  text-transform: uppercase; /* Преобразование в заглавные буквы */
-  letter-spacing: 2px; /* Расстояние между буквами */
-  margin: 0; /* Убираем отступы */
-  padding: 10px 0; /* Отступы сверху и снизу */
-  text-align: center; /* Центрируем текст */
-  
-  
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* Одна колонка на мобильных устройствах */
+    grid-gap: 10px; /* Уменьшаем отступ между ячейками */
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .footer-menu {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .footer-contacts {
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .footer-copyright {
+    align-items: center;
+    text-align: center;
+  }
 }
