@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import PhotoGalery from './pages/pht';
-import Doctors from './pages/Doctors';
+
 import Specials from './pages/Specials';
 import './App.css';
 import Services from './pages/Services';
@@ -46,7 +46,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Services" element={<Services />} />
           <Route path="/PhotoGalery" element={<PhotoGalery />} />
-          <Route path="/Doctors" element={<Doctors />} />
           <Route path="/Specials" element={<Specials />} />
         </Routes>
       </main>
